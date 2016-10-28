@@ -7,7 +7,7 @@ exports.question=function (req,res) {
 //GET /quizes/answer
 
 exports.answer=function (req,res) {
-	if(req.query.respuesta==='Roma'||req.query.respuesta==='roma'){
+	if(req.query.respuesta==='Roma'||req.query.respuesta==='roma'||req.query.respuesta==='ROMA'){
 		res.render('quizes/answer',{respuesta:'Correcto'});
 	}else{
 		res.render('quizes/answer',{respuesta:'Incorrecto'});
