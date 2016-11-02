@@ -15,9 +15,19 @@ exports.answer=function (req,res) {
 	models.Quiz.findAll().then(function (quiz) {
 	
 	if(req.query.respuesta===quiz[0].respuesta){
-		res.render('quizes/answer',{respuesta:'Correcto'});
+quiz[0].aciertos=quiz[0].aciertos+1;
+quiz[0].save().then(function(quiz) {
+
+});
+	 res.render('quizes/answer',{respuesta:'Correcto  aciertos: '+quiz[0].aciertos});	
+			
 	}else{
-		res.render('quizes/answer',{respuesta:'Incorrecto'});
+		res.render('quizes/answer',{respuesta:'Incorrecto '+' Upss Game Over Aciertos: '+quiz[0].aciertos
+	});
+		quiz[0].aciertos=0;
+quiz[0].save().then(function(quiz) {
+
+});
 	}
 });
 };
