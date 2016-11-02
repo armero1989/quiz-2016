@@ -23,6 +23,7 @@ sequelize.sync().then(function() {
 					pregunta: 'Capital de Italia',
 					respuesta: 'Roma',
 					aciertos:0,
+					fallos:0,
 				})
 				.then(function() {
 					console.log('Base de Datos inicializada');
