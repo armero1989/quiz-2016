@@ -54,16 +54,30 @@ exports.index=function(req,res){
 //GET /quizes/:id
 
 exports.show=function (req,res) {
-
-	res.render('quizes/show',{quiz: req.quiz,errors:[]});
+	var fallos=req.query.fallos;
+	res.render('quizes/show',{quiz: req.quiz,fallos:fallos,errors:[]});
 };
 
 //GET /quizes/answer
 
 exports.answer=function (req,res) {
+	var fallos=req.query.fallos;
+	var array=req.quiz.respuesta.split("");
+	var palabra="";
 	var resultado="Incorrecto";
+
 	if(req.query.respuesta===req.quiz.respuesta){
 		resultado="Correcto";
+		fallos=0;
+	}else{
+		
+		fallos++;
+		if(fallos>req.quiz.respuesta.length){
+         palabra="No hay mas Pistas."
+		}else{
+		palabra=array[fallos-1];
 	}
-	res.render('quizes/answer',{quiz:req.quiz,respuesta:resultado,errors:[]});
+
+	}
+	res.render('quizes/answer',{quiz:req.quiz,respuesta:resultado,errors:[],palabra:palabra,fallos:fallos});
 };

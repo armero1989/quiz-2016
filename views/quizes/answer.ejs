@@ -1,4 +1,5 @@
 
 	
-	<%=respuesta%><p></p>
-	<a href="/quizes/<%= quiz.id %>">Volver</a>
+	<%=respuesta%><p>Fallos: <%=fallos%></p>
+	<p>Pista : <%=palabra%></p>
+	<a href="/quizes/<%= quiz.id %>?fallos=<%=fallos%>">Volver</a>

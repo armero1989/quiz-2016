@@ -3,6 +3,11 @@
 		<form method="get" action="/quizes/<%= quiz.id %>/answer">
 			Pregunta <%= quiz.pregunta %> <p></p>
 			<input type="text" name="respuesta" value="Responda aqui"/>
+			
+			<input type="hidden" name="fallos" value="<%=fallos%>"/>
+
 			<input type="submit" name="Enviar" value="Enviar">
+
 		</form>
+		
 
