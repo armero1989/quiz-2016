@@ -71,6 +71,15 @@ exports.update = function(req, res) {
 					}
 				});
 	}
+
+//DELETE /quizes/:id
+exports.destroy=function (req,res) {
+	req.quiz.destroy().then(function () {
+		res.redirect('/quizes');
+	}).catch(function (error) {
+		next(error);
+	});
+};
 	//Autoload -factoriza el codigo si la ruta incluye :quizId
 exports.load = function(req, res, next, quizId) {
 	models.Quiz.findById(quizId).then(
