@@ -6,3 +6,10 @@
 			<input type="submit" name="Enviar" value="Enviar">
 		</form>
 
+		<p><a href="/quizes/<%=quiz.id%>/comments/new"><button>Añadir Comentario</button></a></p>
+		<p><strong>Comentarios</strong></p>
+		
+		<% for(i in quiz.Comments){%>
+		<p><%=quiz.Comments[i].texto%></p>
+		<%}%>
+

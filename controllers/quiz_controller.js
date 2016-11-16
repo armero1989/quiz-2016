@@ -82,7 +82,10 @@ exports.destroy=function (req,res) {
 };
 	//Autoload -factoriza el codigo si la ruta incluye :quizId
 exports.load = function(req, res, next, quizId) {
-	models.Quiz.findById(quizId).then(
+	models.Quiz.findOne({
+		where:{id:Number(quizId)},
+		include:[{model:models.Comment}]
+	}).then(
 		function(quiz) {
 			if (quiz) {
 				req.quiz = quiz;
