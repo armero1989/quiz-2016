@@ -6,7 +6,14 @@ exports.loginRequired=function(req,res,next){
 		res.redirect('/login');
 	}
 };
-
+// Borrado admin
+exports.loginAdmin=function (req,res, next) {
+	if(req.session.user.username=='admin'){
+		next();
+	}else{
+		res.redirect('/login');
+	}
+};
 //Get /login -- formulario de login
 
 exports.new = function(req, res) {
