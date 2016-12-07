@@ -20,7 +20,7 @@
   		<header class="main" id="h1">
       <% if(!session.user){%>
       <span class="right"><a href="/login">Login</a></span>
-      <span class="right"><a href="/register">Registro</a>&nbsp;</span>
+      <span class="right"><a href="/users/new">Registro</a>&nbsp;</span>
       <% }else{%>
       <span class="right"><%= session.user.username%>&nbsp;<a href="/logout">Logout</a></span>
       <%}%>
