@@ -28,10 +28,16 @@ exports.show = function (req, res) {
 // GET /quizes/:id/answer
 exports.answer = function (req, res) {
 	var resultado = 'Incorrecto';
+	var aciertos=parseInt(req.query.aciertos);
 		if(req.query.respuesta.toUpperCase() === req.quiz.respuesta.toUpperCase()) {
 			resultado = 'Correcto';
+			req.quiz.aciertos=req.quiz.aciertos+1;
+req.quiz.save().then(function(quiz) {
+
+});
 		}
-		res.render('quizes/answer.ejs', {quiz: req.quiz, respuesta: resultado, errors:[]});
+		res.render('quizes/answer.ejs', {quiz: req.quiz, respuesta: resultado,aciertos:req.quiz.aciertos, errors:[]});
+		
 };
 
 // GET /quizes/new
@@ -49,7 +55,7 @@ exports.create = function(req, res) {
 			res.render('quizes/new', {quiz: quiz, errors: err.errors});
 		} else {
 			// Guarda en la base de datos los campos pregunta y respuesta de quiz
-			quiz.save({fields: ["pregunta", "respuesta"]}).then(function() {			
+			req.quiz.save({fields: ["pregunta", "respuesta"]}).then(function() {			
 			res.redirect('/quizes'); // Redirección a lista de pregunta (URL relativo)
 			})
 		}
