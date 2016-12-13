@@ -29,9 +29,14 @@ exports.show = function (req, res) {
 exports.answer = function (req, res) {
 	var resultado = 'Incorrecto';
 	var aciertos=parseInt(req.query.aciertos);
+
 		if(req.query.respuesta.toUpperCase() === req.quiz.respuesta.toUpperCase()) {
 			resultado = 'Correcto';
-			req.quiz.aciertos=req.quiz.aciertos+1;
+			if(req.session.user){
+				req.quiz.aciertos=req.session.user.aciertos++;
+				}
+			else {
+			req.quiz.aciertos=req.quiz.aciertos+1;}
 req.quiz.save().then(function(quiz) {
 
 });
